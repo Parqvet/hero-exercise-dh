@@ -17,5 +17,17 @@ module.exports = {
         } else {
             res.send(`Hola mi nombres: ${idHero.nombre} y soy ${idHero.profesion}`)
         }
+    },
+    heroesBio: (req, res) => {
+        let id = req.params.id;
+        let idHero = heroParser.find(hero => hero.id == id);
+
+        if (!idHero) {
+            res.send('No encontramos un heroe para mostrarte su biografia');
+        } else if (req.params.ok !== 'ok') {
+            res.send('Lamento que no desees saber mas de mi');
+        } else {
+            res.send(`${idHero.nombre} - ${idHero.resenia}`);
+        }
     }
 }
